@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-# run sed $'s/\r$//' ./install.sh > ./install.Unix.sh to convert windows \r\n endings to \n
+# run sed $'s/\r$//' ./docker-commands.sh > ./docker-commands.Unix.sh to convert windows \r\n endings to \n
 
 # Define variables
 IMAGE_NAME="k8s-controller"
@@ -15,3 +15,7 @@ REGISTRY="localhost:5000"
 docker tag $TAG $REGISTRY/$TAG
 
 echo "Docker Image built and tagged successfully!"
+
+docker push $REGISTRY/$TAG
+
+echo "Docker image pushed"

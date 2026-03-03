@@ -40,12 +40,6 @@ func main() {
 
 	fmt.Printf("Connected to Kubernetes %s\n", version.GitVersion)
 
-	// pods, err := clientset.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
-	// if err != nil {
-	// 	//fmt.Printf("Error getting server version: %v\n", err)
-	// 	handleError(err)
-	// 	os.Exit(1)
-	// }
 	pods, err := getPods(clientset, "kong")
 	if err != nil {
 		fmt.Printf("Error getting pods: %v\n", err)
@@ -85,19 +79,6 @@ func getPods(client *kubernetes.Clientset, namespace string) (*v1.PodList, error
 	// }
 	return pods, err
 }
-
-// func GetPods(client *kubernetes.Clientset, namespace string) (*v1core.PodList, error) {
-//     // Create a pod interface for the given namespace
-//     podInterface := client.KubeClient.CoreV1().Pods(namespace)
-
-//     // List the pods in the given namespace
-//     podList, err := podInterface.List(context.TODO(), metav1.ListOptions{})
-
-//     if err != nil {
-//         return nil, err
-//     }
-//     return podList, nil
-// }
 
 func isCrashLoop(cs v1.ContainerStatus) bool {
 	return cs.State.Waiting != nil && cs.State.Waiting.Reason == "CrashLoopBackOff"

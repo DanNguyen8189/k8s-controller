@@ -1,5 +1,13 @@
 k8s controller written in go!
 
-It's a containerized application that sits in its own namespace in a k8s cluster
-It can monitor the status of pods running in other namespaces in the same clust
-Uploaded to local docker registry on localhost:5000 https://gravitydevops.com/how-to-create-local-repo-in-docker-and-push-and-pull-images/
+Uses the client-go library to talk to the kubernetes cluster
+
+This application can monitor the statuses of pods running in other namespaces in the same cluster
+
+To deploy, run 
+kubectl apply -f deployment.yaml -n=<namespace>
+
+The docker image of the project gets uploaded to local docker registry on localhost:5000. When instances of this application are launched into k8s, it pulls the required image from that local registry.
+
+How to upload a docker image to a local registry:
+https://gravitydevops.com/how-to-create-local-repo-in-docker-and-push-and-pull-images/
