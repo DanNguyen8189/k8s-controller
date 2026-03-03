@@ -1,0 +1,17 @@
+#! /usr/bin/env bash
+
+# Define variables
+IMAGE_NAME="k8s-controller"
+VERSION="latest"
+TAG="$IMAGE_NAME:$VERSION"
+
+# Build the Docker image
+docker build -t $TAG .
+
+# Optionally, tag the image for a registry
+REGISTRY="localhost:5000"
+docker tag $TAG $REGISTRY/$TAG
+
+echo "Docker Image built and tagged successfully!"
+
+docker push $REGISTRY/$TAG

@@ -1,0 +1,5 @@
+k8s controller written in go!
+
+It's a containerized application that sits in its own namespace in a k8s cluster
+It can monitor the status of pods running in other namespaces in the same clust
+Uploaded to local docker registry on localhost:5000 https://gravitydevops.com/how-to-create-local-repo-in-docker-and-push-and-pull-images/
