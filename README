@@ -1,13 +1,31 @@
+# k8s-controller
 k8s controller written in go!
 
 Uses the client-go library to talk to the kubernetes cluster
 
 This application can monitor the statuses of pods running in other namespaces in the same cluster
 
-To deploy, run 
-kubectl apply -f deployment.yaml -n=<namespace>
+1. Open docker desktop, make sure kubernetes is running
+2. Start local docker registry (more info below)
+3. Build and push docker image:
 
+```
+./docker-commands.Unix
+```
+
+4. Deploy
+```
+kubectl apply -f deployment.yaml -n=k8s-controller
+```
+
+
+## Local docker registry
 The docker image of the project gets uploaded to local docker registry on localhost:5000. When instances of this application are launched into k8s, it pulls the required image from that local registry.
 
 How to upload a docker image to a local registry:
 https://gravitydevops.com/how-to-create-local-repo-in-docker-and-push-and-pull-images/
+
+To start the local registry again the next day after shutting down docker desktop/the cluster:
+```
+docker start local-registry
+```

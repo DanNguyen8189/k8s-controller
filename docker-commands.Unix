@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-
+set -e
 # Define variables
 IMAGE_NAME="k8s-controller"
 VERSION="latest"
